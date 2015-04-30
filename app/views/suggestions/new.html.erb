@@ -3,29 +3,41 @@
     <%= field_set_tag 'Suggestion Form', class: "text-center" do %>
 
     <div class="small-12 large-6 columns">
-      <div class="small-3 medium-2 columns">
-        <%= form.label :sig, class: "left inline" %>
-      </div>
-      <div class="small-9 medium-10 columns">
-        <%= form.collection_select :sig_id, @sigs, :id, :name %>
+      <%= form.label :sig, class: "suggestion-form-label" %>
+      <div class="panel">
+        <%= form.collection_select :sig_id, @sigs, :id, :name,
+          { include_blank: "Please select special interest group..." },
+          { class: "sig-suggestion-select" }
+        %>
       </div>
     </div>
 
     <div class="small-12 large-6 columns">
-      <div class="small-3 medium-2 column">
-        <%= form.label :position, class: "left inline" %>
-      </div>
-
-      <div class="small-9 medium-10 columns">
-        <%= form.text_field :position %>
+      <%= form.label :position, class: "suggestion-form-label" %>
+      <div class="panel">
+        <%= form.collection_select :position, @positions, :id, :description,
+          { include_blank: "Please select a position..." }
+        %>
+        <span class="or-tag">or</span>
+        <%= form.text_field :position,
+          placeholder: "...suggest a position.",
+          class: "suggest-new-position"
+        %>
       </div>
     </div>
     <hr>
     <div class="row">
-      <%= form.label :reasoning, class: "text-center suggestion-form-label" %>
-      <%= form.text_area :reasoning,
-        placeholder: "In 500 words or less, let us know why you think the selected Special Interest Group supports this position."
-      %>
+      <div class="large-6 columns">
+        <%= form.label :reasoning, class: "suggestion-form-label" %>
+        <%= form.text_area :reasoning,
+          placeholder: "We'd love to hear why you think the special interest group would support this position."
+        %>
+      </div>
+
+      <div class="large-6 columns">
+        <%= form.label :citations, class: "suggestion-form-label" %>
+        <%= form.text_area :citations, placeholder: "Please link any citations here." %>
+      </div>
     </div>
       <%= form.submit "Submit Suggestion", class: "button radius" %>
     <% end %>
