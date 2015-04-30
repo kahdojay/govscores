@@ -2,6 +2,7 @@ class SuggestionsController < ApplicationController
   def new
     @suggestion = Suggestion.new
     @sigs = Sig.all
+    @positions = Position.all
   end
 
   def create
