@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/positions', to: 'welcome#positions'
 
   resources :suggestions
+  resources :sigs
 end
