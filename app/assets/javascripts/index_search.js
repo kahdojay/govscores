@@ -25,17 +25,17 @@ var initializeSearch = function() {
     });
   }
 
-  var getIssues = $.getJSON('/issues')
+  var getIssues = $.getJSON('/issues');
   getIssues.done(function(response){
-    var _issueNames;
-    _issueNames = response.map(function(data){
+    var issueNames;
+    issueNames = response.map(function(data){
       return data.description;
     });
-    setTypeAhead(_issueNames);
+    setTypeAhead(issueNames);
   });
 
   var populatePositions = function(issue) {
-    var positionsJSON = $.getJSON('/positions', { data: issue })
+    var positionsJSON = $.getJSON('/positions', { data: issue });
 
     positionsJSON.done(function(positions){
       var positionsContainer = $('#positions-container');
@@ -43,8 +43,8 @@ var initializeSearch = function() {
       positions.forEach(function(position){
         var posString = '<p> class="position-description">' + position.description + '</p>';
         positionsContainer.append(posString);
-      })
-    })
+      });
+    });
   }
 
   $('.typeahead').bind('typeahead:selected', function() {
