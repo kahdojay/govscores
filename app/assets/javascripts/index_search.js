@@ -25,24 +25,24 @@ var initializeSearch = function() {
     });
   }
 
-  var getIssues = $.getJSON("/issues")
+  var getIssues = $.getJSON('/issues')
   getIssues.done(function(response){
-    var issueNames = response.map(function(data){
+    var _issueNames;
+    _issueNames = response.map(function(data){
       return data.description;
     });
-    setTypeAhead(issueNames);
+    setTypeAhead(_issueNames);
   });
 
   var populatePositions = function(issue) {
-    $.ajax({
-      type: "GET",
-      url: "/positions",
-      data: {issue: issue}
-    }).done(function(positions) {
-      $("#position-container").empty();
-      positions.forEach(function(position) {
-        var positionString = "<p class='position-description'>" + position.description + "</p>";
-        $("#position-container").append(positionString)
+    var positionsJSON = $.getJSON('/positions', { data: issue })
+
+    positionsJSON.done(function(positions){
+      var positionsContainer = $('#positions-container');
+      positionContainer.empty();
+      positions.forEach(function(position){
+        var posString = '<p> class="position-description">' + position.description + '</p>';
+        positionsContainer.append(posString);
       })
     })
   }
