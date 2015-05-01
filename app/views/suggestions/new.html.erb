@@ -16,7 +16,8 @@
       <%= form.label :position, class: "suggestion-form-label" %>
       <div class="panel">
         <%= form.collection_select :position, @positions, :id, :description,
-          { include_blank: "Please select a position..." }
+          { include_blank: "Please select a position..." },
+          { class: "existing-positions-select" }
         %>
         <span class="or-tag">or</span>
         <%= form.text_field :position,
