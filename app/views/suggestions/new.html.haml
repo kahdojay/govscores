@@ -1,13 +1,9 @@
-/ Everything below is indentation based
 = form_for @suggestion do |f|
-  / Generates an html div tag
   .row
-    / Generates a Ruby tag
     = field_set_tag 'Suggestion Form', class: "text-center" do
       .small-12.large-6.columns
         = f.label :sig, class: "suggestion-form-label"
         .panel
-          / Long Rails helpers can break line provided they end in commas
           = f.collection_select :sig_id, @sigs, :id, :name,
             { include_blank: "Please select special interest group..." },
             { class: "sig-suggestion-select" }
@@ -18,7 +14,6 @@
           = f.collection_select :position, @positions, :id, :description,
             { include_blank: "Please select a position..." },
             { class: "existing-positions-select" }
-          / Generates a non-div html tag
           %span.or-tag
           = f.text_field :position, placeholder: "...suggest a position", class: "suggest-new-position"
 
