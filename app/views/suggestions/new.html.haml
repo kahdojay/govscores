@@ -3,10 +3,11 @@
     = field_set_tag 'Suggestion Form', class: "text-center" do
       .small-12.large-6.columns
         = f.label :sig, class: "suggestion-form-label"
-        .panel
+        .panel.sig-select
           = f.collection_select :sig_id, @sigs, :id, :name,
             { include_blank: "Please select special interest group..." },
             { class: "sig-suggestion-select" }
+          %a.sig-url
 
       .small-12.large-6.columns
         = f.label :position, class: "suggestion-form-label"
