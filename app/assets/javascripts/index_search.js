@@ -25,15 +25,13 @@ var initializeSearch = function() {
     });
   }
 
-  $.ajax({
-    type: "GET",
-    url: "/issues"
-  }).done(function(response) {
+  var getIssues = $.getJSON("/issues")
+  getIssues.done(function(response){
     var issueNames = response.map(function(data){
-      return data.description
-    })
+      return data.description;
+    });
     setTypeAhead(issueNames);
-  })
+  });
 
   var populatePositions = function(issue) {
     $.ajax({
